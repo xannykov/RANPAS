@@ -1,0 +1,73 @@
+:root {
+    --blue-bios: #0200AB;
+    --yellow-bios: #FFFF00;
+    --red-bios: #FF0000;
+    --white-bios: #EEF1FF;
+}
+
+@font-face {
+    font-family: PixelifySans;
+    src: url('src/font/PixelifySans.ttf');
+}
+*{
+    padding: 0;
+    margin: 0;
+    background-color: var(--blue-bios);
+    font-family: PixelifySans;
+    -ms-user-select: none; 
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    user-select: none; 
+    box-sizing: border-box;
+}
+
+
+
+header{
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-header{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+.logo-text{
+    font-size: 60px;
+    color: var(--white-bios);
+}
+
+
+
+.container-contour {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 92vh;
+    width: 100%;
+}
+
+.external-contour{
+    width: calc(100% - 20px);
+    height: calc(92vh - 20px);
+    border: 8px solid var(--white-bios);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.inner-contour{
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    border: 5px solid var(--white-bios);
+    box-sizing: border-box;
+}
+
+
+
