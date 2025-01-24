@@ -55,7 +55,7 @@ header{
 .external-contour{
     width: calc(100% - 20px);
     height: calc(92vh - 20px);
-    border: 8px solid var(--white-bios);
+    border: 5px solid var(--white-bios);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,3 +71,117 @@ header{
 
 
 
+.base-container{
+    padding: 5% 15% 5% 15%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.container-method,
+.container-output{
+    margin: 10px;
+    height: 100%;
+    width: 48%;
+    border: 4px solid var(--white-bios);
+    box-sizing: border-box;
+}
+
+.container-output {
+    box-sizing: border-box;
+    border: 4px solid var(--white-bios);
+    color: var(--white-bios);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-mode {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 40px 10px 40px;
+}
+
+.arrow {
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--white-bios);
+    background: none;
+    border: none;
+}
+
+.arrow:hover{
+    color: var(--yellow-bios);
+}
+
+.title-mode {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--white-bios);
+}
+
+.divider{
+    width: 100%;
+    height: 4px;
+    background-color: var(--white-bios);
+    margin: 0;
+}
+
+.rules {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    overflow-y: auto;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    max-height: 100%;
+    margin: 10px 40px 10px 40px;
+}
+
+.rules p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.rules ol {
+    padding-left: 20px;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.rules li {
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+    .arrow, .title-mode {
+        font-size: 1.8rem;
+    }
+
+    .rules {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .arrow, .title-mode {
+        font-size: 1.5rem;
+    }
+
+    .rules {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .arrow, .title-mode {
+        font-size: 1.2rem;
+    }
+
+    .rules {
+        font-size: 1rem;
+    }
+}
