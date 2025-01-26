@@ -21,7 +21,57 @@
         <div class = "external-contour">
             <div class = "inner-contour">
                 <div class = "base-container">
-                    <div class = "container-method"></div>
+                    
+                    <div class = "container-method">
+                        <div class = "container-any-methods">
+
+                            <div class="range">
+                                <div class = "description-method">Password length</div>
+                                <div class="container-range">
+                                    <input type="range" min="2" max="20" step="1" value="11" id="range-slider" oninput="updateRangeValue(this.value)">
+                                    <div class="range-value" id="range-value">11</div>
+                                </div>
+                            </div>
+
+                            <div class="separator"></div>
+
+                            <div class="input-keyword">
+                                <div class = "description-method">Select a keyword</div>
+                                <div class="container-input-text">
+                                    <input class = "input-text" type="text" placeholder="Keyword">
+                                </div>
+                            </div>
+
+                            <div class="separator"></div>
+
+                            <div class="container-checkbox">
+                                <label class="label-left">
+                                    <input class="input-checkbox" id = "checkbox-id-1" type="checkbox" checked>
+                                    <label for="checkbox-id-1">Small letters</label>
+                                </label>
+                                <label class="label-right">
+                                    <input class="input-checkbox" id = "checkbox-id-2" type="checkbox" checked>
+                                    <label for="checkbox-id-2">Symbols</label>
+                                </label>
+                                <label class="label-left">
+                                    <input class="input-checkbox" id = "checkbox-id-3" type="checkbox" checked>
+                                    <label for="checkbox-id-3">Big letters</label>
+                                </label>
+                                <label class="label-right">
+                                    <input class="input-checkbox" id = "checkbox-id-4" type="checkbox" checked>
+                                    <label for="checkbox-id-4">Numbers</label>
+                                </label>
+                            </div>
+                            
+                            <div class="separator"></div>
+
+                            <div class= "button-generate">
+                                <button class = "custom-button">GENERATE</button>
+                            </div>
+
+                        </div>
+                    </div>
+
                     <div class = "container-output">
                         <div class = "container-mode">
                             <button class = "arrow"> &lt; </button>
@@ -44,6 +94,6 @@
         </div>
     </div>
 
-
+    <script src="scripts.js"></script>
 </body>
 </html>
