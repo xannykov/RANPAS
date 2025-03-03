@@ -18,6 +18,7 @@
     -webkit-user-select: none; 
     user-select: none; 
     box-sizing: border-box;
+    transition: .3s ease-in-out;
 }
 
 
@@ -48,7 +49,7 @@ header{
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    min-height: 92vh;
+    min-height: auto;
     width: 100%;
 }
 
@@ -104,23 +105,29 @@ header{
     align-items: center;
 }
 
-.description-method{
+.description-method {
     display: flex;
     justify-content: center;
-    font-size: 1.8rem;
+    align-items: center;
+    font-size: 1.5rem;
     color: var(--white-bios);
     margin-bottom: 20px;
     box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+
 .separator{
-    width: 40%;
+    width: clamp(2rem, 20vw, 10rem);
     height: 2px;
     background-color: var(--white-bios);
     opacity: 60%;
     margin: 0;
 }
 /*#endregion FUNCTIONS CONTAINER*/
+
 
 /*#region INPUT RANGE*/
 
@@ -180,6 +187,7 @@ input[type="range"]:hover::-webkit-slider-thumb {
 
 /*#endregion INPUT RANGE*/
 
+
 /*#region INPUT KEYWORD */
 .container-range,
 .container-input-text{
@@ -215,7 +223,7 @@ input[type="range"]:hover::-webkit-slider-thumb {
 label {
     display: flex;
     align-items: center;
-    font-size: 24px;
+    font-size: 1.5rem;
     color: var(--white-bios);
 }
 
@@ -264,23 +272,17 @@ label input:checked + label::after {
 
 
 /*#region BUTTON */
-.button-generate {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
 .custom-button {
     width: 100%;
     padding: 10px 20px;
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 1.75rem;
     text-transform: uppercase;
     color: var(--yellow-bios);
     border: 2px solid var(--yellow-bios);
     background: transparent;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .custom-button:hover {
@@ -358,10 +360,20 @@ label input:checked + label::after {
 .rules li {
     margin-bottom: 5px;
 }
+
+.output-description,
+.output-box{
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+}
 /*#endregion RULES FORM*/
 
 
-@media screen and (max-width: 1024px) {
+@media (max-width: 1190px) {
+    .base-container{
+        padding: 5% 10% 5% 10%;
+    }
     .arrow, .title-mode {
         font-size: 1.8rem;
     }
@@ -371,22 +383,81 @@ label input:checked + label::after {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 1024px) {
+    .base-container{
+        padding: 5% 5% 5% 5%;
+    }
     .arrow, .title-mode {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     .rules {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 }
 
-@media screen and (max-width: 480px) {
+@media (max-width: 768px) {
+    
+    .base-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container-method,
+    .container-output {
+        width: 100%; 
+        margin: 20px 0;
+    }
+
     .arrow, .title-mode {
-        font-size: 1.2rem;
+        font-size: 1.8rem;
     }
 
     .rules {
-        font-size: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .external-contour{
+        height: calc(180vh);
+        border: 5px solid var(--white-bios);
+    }
+}
+
+@media (max-width: 480px) {
+
+    .inner-contour{
+        border: 2px solid var(--white-bios);
+    }
+
+    .external-contour{
+        height: calc(130vh);
+        border: 2px solid var(--white-bios);
+    }
+
+    .custom-button {
+        font-size: 1.8rem;
+        padding: 8px 16px;
+    }
+
+    label {
+        font-size: 1.25rem;
+    }
+
+    label input + label::before {
+        width: 25px;
+        height: 25px;
+    }
+
+    label input:checked + label::after {
+        font-size: 18px;
+        left: 6px;
+    }
+    .arrow, .title-mode {
+        font-size: 1.4rem;
+    }
+
+    .rules {
+        font-size: 1.2rem;
     }
 }

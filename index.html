@@ -74,12 +74,12 @@
 
                     <div class = "container-output">
                         <div class = "container-mode">
-                            <button class = "arrow"> &lt; </button>
-                            <span class = "title-mode"> HELP </span>
-                            <button class = "arrow"> &gt; </button>
+                            <button class = "arrow" onclick="toggleMode()"> &lt; </button>
+                            <span class = "title-mode" id = "mode-title"> HELP </span>
+                            <button class = "arrow" onclick="toggleMode()"> &gt; </button>
                         </div>
                         <div class = "divider"></div>
-                        <div class = "rules">
+                        <div class = "rules" id = "rules-content">
                             <p>Rules for creating a good password:</p>
                             <ol>
                                 <li>The password must consist of characters, numbers, and letters.</li>
