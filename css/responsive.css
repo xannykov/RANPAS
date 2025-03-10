@@ -1,0 +1,99 @@
+@media (max-width: 1190px) {
+    .password-generator__content{
+        padding: 5% 10% 5% 10%;
+    }
+    
+    .output__arrow, .output__title {
+        font-size: 1.8rem;
+    }
+
+    .output__rules {
+        font-size: 1.4rem;
+    }
+}
+
+
+
+@media (max-width: 1024px) {
+    .password-generator__content{
+        padding: 5% 5% 5% 5%;
+    }
+
+    .output__arrow, .output__title {
+        font-size: 1.8rem;
+    }
+
+    .output__rules {
+        font-size: 1.4rem;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    
+    .password-generator__content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .settings,
+    .output {
+        width: 100%; 
+        margin: 20px 0;
+    }
+
+    .output__arrow, .output__title {
+        font-size: 1.8rem;
+    }
+
+    .output__rules {
+        font-size: 1.4rem;
+    }
+
+    .password-generator__outer{
+        height: calc(180vh);
+        border: 5px solid var(--white-bios);
+    }
+}
+
+
+
+@media (max-width: 480px) {
+
+    .password-generator__inner{
+        border: 2px solid var(--white-bios);
+    }
+
+    .password-generator__outer{
+        height: calc(130vh);
+        border: 2px solid var(--white-bios);
+    }
+
+    .settings__button-generate {
+        font-size: 1.8rem;
+        padding: 8px 16px;
+    }
+
+    label {
+        font-size: 1.25rem;
+    }
+
+    label input + label::before {
+        width: 25px;
+        height: 25px;
+    }
+
+    label input:checked + label::after {
+        font-size: 18px;
+        left: 6px;
+    }
+    .output__arrow, .output__title {
+        font-size: 1.4rem;
+    }
+
+    .output__rules {
+        font-size: 1.2rem;
+    }
+}

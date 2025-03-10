@@ -9,77 +9,81 @@
     </head>
 <body>
 
-    <header>
-        <div class="container-header">
-            <div class = "container-text">
-                <span class = "logo-text">RANPAS</span> 
+    
+    <header class="header">
+        <div class="header__container">
+            <div class = "header__logo">
+                <span class = "header__logo-text">RANPAS</span> 
             </div>
         </div>
     </header>
 
-    <div class = "container-contour">
-        <div class = "external-contour">
-            <div class = "inner-contour">
-                <div class = "base-container">
+
+    <div class = "password-generator">
+        <div class = "password-generator__outer">
+            <div class = "password-generator__inner">
+                <div class = "password-generator__content"> 
                     
-                    <div class = "container-method">
-                        <div class = "container-any-methods">
 
-                            <div class="range">
-                                <div class = "description-method">Password length</div>
-                                <div class="container-range">
-                                    <input type="range" min="2" max="20" step="1" value="11" id="range-slider" oninput="updateRangeValue(this.value)">
-                                    <div class="range-value" id="range-value">11</div>
+                    <div class = "settings">
+                        <div class = "settings__group">
+
+                            <div class="settings__range">
+                                <div class = "settings__label">Password length</div>
+                                <div class="settings__container-range">
+                                    <input type="range" min="7" max="20" step="1" value="7" id="range-slider" oninput="updateRangeValue(this.value)">
+                                    <div class="settings__range-value" id="range-value">7</div>
+                                </div>
+                            </div>
+                                
+                            <div class="settings__separator"></div>
+
+                            <div class="settings__input-keyword">
+                                <div class = "settings__label">Select a keyword</div>
+                                <div class="settings__container-input-text">
+                                    <input class = "settings__input-text" type="text" placeholder="Keyword">
                                 </div>
                             </div>
 
-                            <div class="separator"></div>
+                            <div class="settings__separator"></div>
 
-                            <div class="input-keyword">
-                                <div class = "description-method">Select a keyword</div>
-                                <div class="container-input-text">
-                                    <input class = "input-text" type="text" placeholder="Keyword">
-                                </div>
-                            </div>
-
-                            <div class="separator"></div>
-
-                            <div class="container-checkbox">
-                                <label class="label-left">
-                                    <input class="input-checkbox" id = "checkbox-id-1" type="checkbox" checked>
+                            <div class="settings__container-checkbox">
+                                <label class="settings__label-left">
+                                    <input class="settings__input-checkbox" id = "checkbox-id-1" type="checkbox" checked>
                                     <label for="checkbox-id-1">Small letters</label>
                                 </label>
-                                <label class="label-right">
-                                    <input class="input-checkbox" id = "checkbox-id-2" type="checkbox" checked>
+                                <label class="settings__label-right">
+                                    <input class="settings__input-checkbox" id = "checkbox-id-2" type="checkbox" checked>
                                     <label for="checkbox-id-2">Symbols</label>
                                 </label>
-                                <label class="label-left">
-                                    <input class="input-checkbox" id = "checkbox-id-3" type="checkbox" checked>
+                                <label class="settings__label-left">
+                                    <input class="settings__input-checkbox" id = "checkbox-id-3" type="checkbox" checked>
                                     <label for="checkbox-id-3">Big letters</label>
                                 </label>
-                                <label class="label-right">
-                                    <input class="input-checkbox" id = "checkbox-id-4" type="checkbox" checked>
+                                <label class="settings__label-right">
+                                    <input class="settings__input-checkbox" id = "checkbox-id-4" type="checkbox" checked>
                                     <label for="checkbox-id-4">Numbers</label>
                                 </label>
                             </div>
                             
-                            <div class="separator"></div>
+                            <div class="settings__separator"></div>
 
-                            <div class= "button-generate">
-                                <button class = "custom-button">GENERATE</button>
+                            <div class= "settings__button">
+                                <button class = "settings__button-generate">GENERATE</button>
                             </div>
 
                         </div>
                     </div>
 
-                    <div class = "container-output">
-                        <div class = "container-mode">
-                            <button class = "arrow" onclick="toggleMode()"> &lt; </button>
-                            <span class = "title-mode" id = "mode-title"> HELP </span>
-                            <button class = "arrow" onclick="toggleMode()"> &gt; </button>
+
+                    <div class = "output">
+                        <div class = "output__mode">
+                            <button class = "output__arrow" onclick="toggleMode()"> &lt; </button>
+                            <span class = "output__title" id = "mode-title"> HELP </span>
+                            <button class = "output__arrow" onclick="toggleMode()"> &gt; </button>
                         </div>
-                        <div class = "divider"></div>
-                        <div class = "rules" id = "rules-content">
+                        <div class = "output__divider"></div>
+                        <div class = "output__rules" id = "rules-content">
                             <p>Rules for creating a good password:</p>
                             <ol>
                                 <li>The password must consist of characters, numbers, and letters.</li>
@@ -95,5 +99,6 @@
     </div>
 
     <script src="scripts.js"></script>
+
 </body>
 </html>

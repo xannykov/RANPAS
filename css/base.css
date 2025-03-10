@@ -1,0 +1,29 @@
+/*========== GLOBAL STYLES ==========*/
+:root {
+    --blue-bios: #0200AB;
+    --yellow-bios: #FFFF00;
+    --red-bios: #FF0000;
+    --white-bios: #EEF1FF;
+}
+
+
+
+@font-face {
+    font-family: PixelifySans;
+    src: url('../src/font/PixelifySans.ttf');
+}
+
+
+
+*{
+    padding: 0;
+    margin: 0;
+    background-color: var(--blue-bios);
+    font-family: PixelifySans;
+    -ms-user-select: none; 
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    user-select: none; 
+    box-sizing: border-box;
+    transition: .3s ease-in-out;
+}
