@@ -164,6 +164,7 @@ header{
 
 .output__rules p {
     margin-bottom: 10px;
+    color: var(--white-bios);
     font-weight: bold;
 }
 
@@ -174,12 +175,64 @@ header{
 }
 
 .output__rules li {
+    color: var(--white-bios);
     margin-bottom: 5px;
 }
 
+
+
+/*========== OUTPUT FORM ==========*/
+
 .output__description,
 .output__box{
+    color: var(--white-bios);
     padding-top: 20px;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.output__description{
+    font-size: clamp(1rem, 1.3vw, 1.6rem);
+}
+
+.output__container-output-word {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 15px;
+    color: var(--white-bios);
+    font-size: 1.3rem;
+    text-align: center;
+    white-space: nowrap;
+    font-size: clamp(1rem, 1.2vw, 1.5rem);
+    border: 2px solid var(--white-bios);
+    margin-right: 20px;
+    width: 70%;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -ms-user-select:text;
+    -moz-user-select: text; 
+    -webkit-user-select: text; 
+    user-select: text; 
+}
+
+.output__copy-button{
+    width: 100%;
+    height: 50px;
+    padding: 10px 20px;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    color: var(--yellow-bios);
+    border: 2px solid var(--yellow-bios);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.output__copy-button:hover{
+    background: var(--yellow-bios);
+    color: var(--black-bios);
 }

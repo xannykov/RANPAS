@@ -72,7 +72,6 @@ input[type="range"]:hover::-webkit-slider-thumb {
     font-size: 32px;
     border: 2px solid var(--white-bios);
     padding: 10px 0px 10px 10px;
-    text-transform: uppercase;
     color: var(--white-bios);
 }
 

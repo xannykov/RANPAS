@@ -15,6 +15,25 @@
 
 
 @media (max-width: 1024px) {
+
+    .output__box{
+        display: block;
+    }
+
+    .output__container-output-word{
+        width: 100%;
+        margin-bottom: 20px;
+        margin-right: 0;
+    }
+    
+    .output__container-copy-button{
+        display: flex;
+        justify-content: right;
+    }
+    .output__copy-button{
+        width: 100px;
+    }
+
     .password-generator__content{
         padding: 5% 5% 5% 5%;
     }
@@ -32,6 +51,24 @@
 
 @media (max-width: 768px) {
     
+    .output__box{
+        display: flex;
+    }
+
+    .output__container-output-word{
+        width: 70%;
+        margin-bottom: 0;
+        margin-right: 15px;
+    }
+    
+    .output__container-copy-button{
+        display: flex;
+        justify-content: right;
+    }
+    .output__copy-button{
+        width: 100%;
+    }
+
     .password-generator__content{
         display: flex;
         flex-direction: column;
@@ -62,6 +99,24 @@
 
 @media (max-width: 480px) {
 
+    .output__box{
+        display: block;
+    }
+
+    .output__container-output-word{
+        width: 100%;
+        margin-bottom: 20px;
+        margin-right: 0;
+    }
+    
+    .output__container-copy-button{
+        display: flex;
+        justify-content: right;
+    }
+    .output__copy-button{
+        width: 100px;
+    }
+    
     .password-generator__inner{
         border: 2px solid var(--white-bios);
     }
