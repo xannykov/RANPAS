@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="style.css" rel="stylesheet">
-        <link rel="shortcut icon" href="src/img/logo.png" type="image/x-icon">
+        <link href="static/style.css" rel="stylesheet">
+        <link rel="shortcut icon" href="static/src/img/logo.png" type="image/x-icon">
         <title>RANPAS - Генератор паролей</title>
     </head>
 <body>
@@ -42,7 +42,7 @@
                                 <form action="/generate" method="get">
                                 <div class = "settings__label">Select a keyword</div>
                                 <div class="settings__container-input-text">
-                                    <input class = "settings__input-text" type="text" placeholder="Keyword">
+                                    <input class = "settings__input-text" type="text" name ="keyword" placeholder="Keyword">
                                 </div>
                             </div>
 
@@ -99,7 +99,7 @@
         </div>
     </div>
 
-    <script src="scripts.js"></script>
+    <script src="static/scripts.js"></script>
 
 </body>
 </html>
