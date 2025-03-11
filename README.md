@@ -16,4 +16,4 @@
 
 Примеры:  
     ●	```feat(logic): add registration/authorization module/энвилоуп```  
-    ●	```delete(logic): delete void sex()```
+    ●	```delete(logic): delete void sex()```  

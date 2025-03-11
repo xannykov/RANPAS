@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="style.css" rel="stylesheet">
-        <link rel="shortcut icon" href="src/img/logo.png" type="image/x-icon">
+        <link href="static/style.css" rel="stylesheet">
+        <link rel="shortcut icon" href="static/src/img/logo.png" type="image/x-icon">
         <title>RANPAS - Генератор паролей</title>
     </head>
 <body>
@@ -24,14 +24,14 @@
             <div class = "password-generator__inner">
                 <div class = "password-generator__content"> 
                     
-
-                    <div class = "settings">
+                    
+                    <form class = "settings" id = "password-form" action="/generate" method="get">
                         <div class = "settings__group">
 
                             <div class="settings__range">
                                 <div class = "settings__label">Password length</div>
                                 <div class="settings__container-range">
-                                    <input type="range" min="7" max="20" step="1" value="7" id="range-slider" oninput="updateRangeValue(this.value)">
+                                    <input type="range" min="7" max="20" step="1" value="7" id="range-slider" name="passwordLength" oninput="updateRangeValue(this.value)">
                                     <div class="settings__range-value" id="range-value">7</div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                             <div class="settings__input-keyword">
                                 <div class = "settings__label">Select a keyword</div>
                                 <div class="settings__container-input-text">
-                                    <input class = "settings__input-text" type="text" placeholder="Keyword">
+                                    <input class = "settings__input-text" type="text" name="keyword" placeholder="Keyword">
                                 </div>
                             </div>
 
@@ -49,19 +49,19 @@
 
                             <div class="settings__container-checkbox">
                                 <label class="settings__label-left">
-                                    <input class="settings__input-checkbox" id = "checkbox-id-1" type="checkbox" checked>
+                                    <input class="settings__input-checkbox" id = "checkbox-id-1" name="smallLetters" type="checkbox" checked>
                                     <label for="checkbox-id-1">Small letters</label>
                                 </label>
                                 <label class="settings__label-right">
-                                    <input class="settings__input-checkbox" id = "checkbox-id-2" type="checkbox" checked>
+                                    <input class="settings__input-checkbox" id = "checkbox-id-2" name="symbols" type="checkbox" checked>
                                     <label for="checkbox-id-2">Symbols</label>
                                 </label>
                                 <label class="settings__label-left">
-                                    <input class="settings__input-checkbox" id = "checkbox-id-3" type="checkbox" checked>
+                                    <input class="settings__input-checkbox" id = "checkbox-id-3" name="bigLetters" type="checkbox" checked>
                                     <label for="checkbox-id-3">Big letters</label>
                                 </label>
                                 <label class="settings__label-right">
-                                    <input class="settings__input-checkbox" id = "checkbox-id-4" type="checkbox" checked>
+                                    <input class="settings__input-checkbox" id = "checkbox-id-4" name="numbers" type="checkbox" checked>
                                     <label for="checkbox-id-4">Numbers</label>
                                 </label>
                             </div>
@@ -69,11 +69,11 @@
                             <div class="settings__separator"></div>
 
                             <div class= "settings__button">
-                                <button class = "settings__button-generate">GENERATE</button>
+                                <button type = "submit" class = "settings__button-generate">GENERATE</button>
                             </div>
 
                         </div>
-                    </div>
+                    </form>
 
 
                     <div class = "output">
@@ -98,7 +98,7 @@
         </div>
     </div>
 
-    <script src="scripts.js"></script>
+    <script src="static/scripts.js"></script>
 
 </body>
 </html>
