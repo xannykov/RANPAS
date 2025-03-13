@@ -19,7 +19,11 @@ function toggleMode() {
     let modeTitle = document.getElementById("mode-title");
     let rulesContent = document.getElementById("rules-content");
 
+<<<<<<< HEAD
     let currentMode = modeTitle.textContent.trim(); 
+=======
+    let currentMode = modeTitle.textContent.trim();
+>>>>>>> backend
 
     if (currentMode === "HELP") {
         modeTitle.textContent = "OUTPUT";
@@ -51,6 +55,7 @@ function toggleMode() {
 function copyFunc(){
     const outputWord = document.getElementById("output-word");
     const text = outputWord.textContent || outputWord.innerText;
+<<<<<<< HEAD
 
     navigator.clipboard.writeText(text)
     .then(() =>{
@@ -76,3 +81,46 @@ function copyFunc(){
 
 //     });
 // });
+=======
+
+    navigator.clipboard.writeText(text)
+        .then(() =>{
+        })
+        .catch(err => {
+            alert("Ошибка копирования!");
+        });
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("password-form").addEventListener("submit", function (event) {
+        event.preventDefault(); // Отключаем стандартную отправку формы
+
+        const formData = new FormData(this);
+        const queryParams = new URLSearchParams(formData).toString();
+
+        fetch(`/generate?${queryParams}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Полученный пароль:", data.password);
+
+                // Обновляем UI
+                document.getElementById("mode-title").textContent = "OUTPUT";
+                document.getElementById("rules-content").innerHTML = `
+                    <p class="output__description">Your generated password:</p>
+                    <div class="output__box">
+                        <div class="output__container-output-word" id="output-word">
+                            ${data.password}
+                        </div>
+                        <div class="output__container-copy-button">
+                            <button class="output__copy-button" id="copy-button" onclick="copyFunc()">COPY</button>
+                        </div>
+                    </div>`;
+            })
+            .catch(error => {
+                console.error("Ошибка:", error);
+            });
+    });
+});
+>>>>>>> backend
