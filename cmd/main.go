@@ -1,9 +1,55 @@
 package main
 
 import (
+	"crypto/rand"
+	"encoding/json"
 	"log"
+	"math/big"
 	"net/http"
+	"strconv"
 )
+
+const (
+	lowerLetters = "abcdefghijklmnopqrstuvwxyz"
+	upperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	numbers      = "0123456789"
+	symbols      = "!@#$%^&*()_+-=[]{}|;:,.<>?/~"
+)
+
+func GeneratePassword(length int, Uselower, Useupper, Usenumber, Usesymbol bool) string {
+
+	// добавить проверку на длительность взлома(формула андерсона) в отдельную функ-ию ебать которую
+
+	chars := ""
+
+	if Uselower {
+		chars += lowerLetters
+	}
+
+	if Useupper {
+		chars += upperLetters
+	}
+
+	if Usenumber {
+		chars += numbers
+	}
+
+	if Usesymbol {
+		chars += symbols
+	}
+	if chars == "" {
+		return chars
+	}
+
+	password := make([]byte, length)
+	//Обработать если длинна стала меньше нуля
+	for i := range password {
+		randIndex, _ := rand.Int(rand.Reader, big.NewInt(int64(len(chars))))
+		password[i] = chars[randIndex.Int64()]
+	}
+
+	return string(password)
+}
 
 func MainHandle(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
@@ -30,9 +76,31 @@ func GenerateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	keyword := r.FormValue("keyword")
+	log.Println("Entered keyword: ", keyword)
+	lenght, _ := strconv.Atoi(r.FormValue("passwordLength"))
 
-	log.Println("User entered a keyword:", keyword)
-	http.Redirect(w, r, "/", http.StatusSeeOther)
+	if lenght < 7 {
+		lenght = 7
+	}
+	if lenght > 20 {
+		lenght = 20
+	}
+
+	lenght -= len(keyword)
+
+	useLower := r.FormValue("smallLetters") == "on"
+	useUpper := r.FormValue("bigLetters") == "on"
+	useSymbols := r.FormValue("symbols") == "on"
+	useNumbers := r.FormValue("numbers") == "on"
+
+	password := keyword + GeneratePassword(lenght, useLower, useUpper, useNumbers, useSymbols)
+
+	response := map[string]string{"password": password}
+
+	//ХАХАХАХ чзх это ебать
+	log.Println("Response: ", response)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
 }
 
 func main() {

@@ -1,76 +1,94 @@
-function updateRangeValue(value){
-    
-    const rangeValue = document.getElementById("range-value");
-    rangeValue.textContent = value;
+function updateRangeValue(value) {
 
     const rangeInput = document.getElementById("range-slider");
+    const rangeValue = document.getElementById("range-value");
 
-    const percentage = ((value - rangeInput.min) / (rangeInput.max - rangeInput.min)) * 100;
-    rangeValue.style.left = `calc(${percentage}%)`;
+    const min = parseInt(rangeInput.min);
+    const max = parseInt(rangeInput.max);
+    const percentage = ((value - min) / (max - min)) * 100;
+
+    rangeValue.textContent = value;
+
+    rangeInput.style.background = `linear-gradient(to right, var(--yellow-bios) 
+                                ${percentage}%, var(--white-bios) ${percentage}%)`;
 }
 
 
 
-function toggleMode(){
-
+function toggleMode() {
     let modeTitle = document.getElementById("mode-title");
     let rulesContent = document.getElementById("rules-content");
 
-    if(modeTitle.textContent === "HELP"){
+    let currentMode = modeTitle.textContent.trim();
+
+    if (currentMode === "HELP") {
         modeTitle.textContent = "OUTPUT";
         rulesContent.innerHTML = `
-                <p class="output__description">Your generated password:</p>
-                <div class="output__box">********</div>`;
-    }else{
+            <p class="output__description">Your generated password:</p>
+            <div class="output__box">
+                <div class="output__container-output-word" id="output-word">
+                    ExamplePassword1234!
+                </div>
+                <div class="output__container-copy-button">
+                    <button type="submit" class="output__copy-button" id="copy-button" onclick="copyFunc()">COPY</button>
+                </div>
+            </div>`;
+    } else {
         modeTitle.textContent = "HELP";
         rulesContent.innerHTML = `
-                <p>Rules for creating a good password:</p>
-                <ol>
-                    <li>The password must consist of characters, numbers, and letters.</li>
-                    <li>The more characters in the password, the better.</li>
-                    <li>The password should not contain the name and date of birth.</li>
-                    <li>Do not use your personal information (full name, date of birth) as a keyword.</li>
-                </ol>`;
+            <p>Rules for creating a good password:</p>
+            <ol>
+                <li>The password must consist of characters, numbers, and letters.</li>
+                <li>The more characters in the password, the better.</li>
+                <li>The password should not contain the name and date of birth.</li>
+                <li>Do not use your personal information (full name, date of birth) as a keyword.</li>
+            </ol>`;
     }
 }
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    
-    const generateButton = document.querySelector(".settings__button");
-    const rangeInput = document.querySelector("#range-slider");
-    const keywordInput = document.querySelector(".settings__input-text");
-    const checkboxes = document.querySelectorAll(".settings__input-checkbox");
+function copyFunc(){
+    const outputWord = document.getElementById("output-word");
+    const text = outputWord.textContent || outputWord.innerText;
 
-
-    generateButton.addEventListener("click", function () {
-        const passwordLength = rangeInput.value;
-        const keyword = keywordInput.value.trim();
-        
-
-        if (!keyword) {
-            alert("Enter the keyword!");
-            return;
-        }
-
-
-        const selectedOptions = {};
-        checkboxes.forEach((checkbox) => {
-            selectedOptions[checkbox.id] = checkbox.checked;
+    navigator.clipboard.writeText(text)
+        .then(() =>{
+        })
+        .catch(err => {
+            alert("Ошибка копирования!");
         });
+}
 
 
-        const userSettings = {
-            passwordLength: passwordLength,
-            keyword: keyword,
-            options: selectedOptions,
-        };
 
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("password-form").addEventListener("submit", function (event) {
+        event.preventDefault(); // Отключаем стандартную отправку формы
 
-        localStorage.setItem("userSettings", JSON.stringify(userSettings));
+        const formData = new FormData(this);
+        const queryParams = new URLSearchParams(formData).toString();
 
-        console.log("Выбранные настройки:", userSettings);
+        fetch(`/generate?${queryParams}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Полученный пароль:", data.password);
 
+                // Обновляем UI
+                document.getElementById("mode-title").textContent = "OUTPUT";
+                document.getElementById("rules-content").innerHTML = `
+                    <p class="output__description">Your generated password:</p>
+                    <div class="output__box">
+                        <div class="output__container-output-word" id="output-word">
+                            ${data.password}
+                        </div>
+                        <div class="output__container-copy-button">
+                            <button class="output__copy-button" id="copy-button" onclick="copyFunc()">COPY</button>
+                        </div>
+                    </div>`;
+            })
+            .catch(error => {
+                console.error("Ошибка:", error);
+            });
     });
 });
