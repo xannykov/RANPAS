@@ -15,25 +15,37 @@
 
 
 @media (max-width: 1024px) {
-
-    .output__box{
-        display: block;
-    }
-
-    .output__container-output-word{
-        width: 100%;
-        margin-bottom: 20px;
-        margin-right: 0;
-    }
-    
-    .output__container-copy-button{
-        display: flex;
+    header{
         justify-content: right;
-    }
-    .output__copy-button{
-        width: 100px;
+        margin-right: 15px;
     }
 
+    .header__logo{
+        width: 220px;
+    }
+
+    .settings-panel{
+        width: 250px;
+    }
+
+    .settings-panel__content{
+        padding: 10px;
+    }
+
+    .settings-panel__close-btn,
+    .settings-panel__header{
+        font-size: 30px;
+    }
+
+    .settings-panel__section-theme,
+    .settings-panel__section-lng{
+        font-size: 25px;
+    }
+
+    .theme-button,
+    .lng-button{
+        font-size: 20px;
+    }
     .password-generator__content{
         padding: 5% 5% 5% 5%;
     }
@@ -50,23 +62,8 @@
 
 
 @media (max-width: 768px) {
-    
-    .output__box{
-        display: flex;
-    }
-
-    .output__container-output-word{
-        width: 70%;
-        margin-bottom: 0;
-        margin-right: 15px;
-    }
-    
-    .output__container-copy-button{
-        display: flex;
-        justify-content: right;
-    }
-    .output__copy-button{
-        width: 100%;
+    .header__logo{
+        width: 180px;
     }
 
     .password-generator__content{
@@ -75,9 +72,14 @@
         align-items: center;
     }
 
+    .password-generator__outer{
+        height: calc(180vh);
+        border: 5px solid var(--white-bios);
+    }
+
     .settings,
     .output {
-        width: 100%; 
+        width: 100%;
         margin: 20px 0;
     }
 
@@ -89,49 +91,51 @@
         font-size: 1.4rem;
     }
 
-    .password-generator__outer{
-        height: calc(180vh);
-        border: 5px solid var(--white-bios);
-    }
+
 }
 
 
 
 @media (max-width: 480px) {
-
-    .output__box{
-        display: block;
+    .header__logo{
+        width: 130px;
     }
 
-    .output__container-output-word{
-        width: 100%;
-        margin-bottom: 20px;
-        margin-right: 0;
-    }
-    
-    .output__container-copy-button{
-        display: flex;
-        justify-content: right;
-    }
-    .output__copy-button{
-        width: 100px;
-    }
-    
-    .password-generator__inner{
-        border: 2px solid var(--white-bios);
+    .settings-panel{
+        width: 200px;
     }
 
-    .password-generator__outer{
-        height: calc(130vh);
-        border: 2px solid var(--white-bios);
+    .settings__container-checkbox{
+        white-space: nowrap;
+        gap: 15px;
+    }
+
+    .settings__input-text{
+        font-size: 1.2rem;
+    }
+
+    .settings__group{
+        padding: 0;
     }
 
     .settings__button-generate {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
         padding: 8px 16px;
     }
 
-    label {
+    .output,
+    .password-generator__outer,
+    .password-generator__inner{
+        border: 2px solid var(--white-bios);
+    }
+    
+    .output__divider{
+        height: 2px;
+    }
+
+    label,
+    .output__rules,
+    .settings__label{
         font-size: 1.25rem;
     }
 
@@ -145,10 +149,6 @@
         left: 6px;
     }
     .output__arrow, .output__title {
-        font-size: 1.4rem;
-    }
-
-    .output__rules {
-        font-size: 1.2rem;
+        font-size: 2rem;
     }
 }

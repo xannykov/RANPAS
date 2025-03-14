@@ -1,3 +1,111 @@
+/*========== SETTINGS BUTTON ==========*/
+
+.header__settings-btn {
+    position: absolute;
+    left: 0;
+    padding: 10px 15px;
+    font-size: 1.8rem;
+    background: transparent;
+    color: var(--white-bios);
+    border: none;
+    cursor: pointer;
+}
+
+.header__settings-btn:hover{
+    color: var(--yellow-bios);
+    transform: scale(1.1);
+}
+
+.settings-panel {
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 300px;
+    height: 100vh;
+    box-shadow: 5px 0 10px var(--shadow-cl);
+    transition: left 0.4s ease-in-out;
+    z-index: 1000;
+}
+
+.settings-panel.active {
+    left: 0;
+}
+
+
+
+/*========== SETTINGS PANEL ==========*/
+
+.settings-panel__content {
+    padding: 20px;
+    color: var(--white-bios);
+    height: 100vh;
+}
+
+.settings-panel__content .output__divider{
+    opacity: 20%;
+}
+
+.settings-panel__content span{
+    font-weight: bold;
+}
+
+.settings-panel__header {
+    font-size: 40px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.settings-panel__close-btn {
+    color: var(--white-bios);
+    font-size: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.settings-panel__close-btn:hover {
+    color: var(--yellow-bios);
+    transform: scale(1.1);
+}
+
+.settings-panel__section-theme,
+.settings-panel__section-lng{
+    font-size: 35px;
+    margin: 20px 0px 20px 0px;
+    display: grid;
+}
+
+.theme-button,
+.lng-button{
+    margin: 5px 0px 5px 0px;
+    border: none;
+    width: 50%;
+    font-size: 25px;
+    color: var(--white-bios);
+    text-align: left;
+    cursor: pointer;
+}
+
+.theme-button:hover,
+.lng-button:hover{
+    color: var(--yellow-bios);
+    padding-left: 15px;
+    transform: scale(1.1);
+}
+
+.light-theme {
+    --theme-bg: var(--blue-bios);
+    --shadow-cl: rgba(0, 0, 0, 0.4);
+}
+
+.dark-theme {
+    --theme-bg: var(--black-bios);
+    --shadow-cl: rgba(255, 255, 255, 0.2);
+}
+
+
+
 /*========== INPUT RANGE ==========*/
 
 .settings__range{
@@ -94,12 +202,12 @@ input[type="range"]:hover::-webkit-slider-thumb {
 label {
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     color: var(--white-bios);
 }
 
 .settings__label-left {
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .settings__label-right {
@@ -142,13 +250,14 @@ label input:checked + label::after {
 
 
 
-/*========== BUTTON ==========*/
+/*========== BUTTON GENERATE ==========*/
 
 .settings__button-generate {
     width: 100%;
     padding: 10px 20px;
-    font-size: 1.75rem;
+    font-size: 1.8rem;
     text-transform: uppercase;
+    white-space: nowrap;
     color: var(--yellow-bios);
     border: 2px solid var(--yellow-bios);
     background: transparent;
@@ -160,4 +269,5 @@ label input:checked + label::after {
 .settings__button-generate:hover {
     background: var(--yellow-bios);
     color: var(--black-bios);
+    transform: scale(1.2);
 }

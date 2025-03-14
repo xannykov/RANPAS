@@ -3,15 +3,15 @@
     --blue-bios: #0200AB;
     --yellow-bios: #FFFF00;
     --red-bios: #FF0000;
-    --white-bios: #EEF1FF;
+    --white-bios: #ffffff;
     --black-bios: #000000;
 }
 
 
 
 @font-face {
-    font-family: PixelifySans;
-    src: url('../src/font/PixelifySans.ttf');
+    font-family: EpilepsySans;
+    src: url('../src/font/EpilepsySans.ttf');
 }
 
 
@@ -19,8 +19,8 @@
 *{
     padding: 0;
     margin: 0;
-    background-color: var(--blue-bios);
-    font-family: PixelifySans;
+    background-color: var(--theme-bg);
+    font-family: EpilepsySans;
     -ms-user-select: none; 
     -moz-user-select: none; 
     -webkit-user-select: none; 

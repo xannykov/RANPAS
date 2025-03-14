@@ -5,77 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="static/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="static/src/img/logo.png" type="image/x-icon">
-    <title>RANPAS - Генератор паролей</title>
+    <title>RANPAS - Password Generator</title>
 </head>
 <body>
 
-
 <header class="header">
+    <button class="header__settings-btn" data-key="settings-btn" onclick="toggleSettings()">Settings</button>
     <div class="header__container">
         <div class = "header__logo">
-            <span class = "header__logo-text">RANPAS</span>
+            <img src="static/src/img/logo-header.svg" alt="RANPAS" class ="header__logo">
         </div>
     </div>
 </header>
 
 
-<<<<<<< HEAD
-    <div class = "password-generator">
-        <div class = "password-generator__outer">
-            <div class = "password-generator__inner">
-                <div class = "password-generator__content"> 
-                    
-                    
-                    <form class = "settings" id = "password-form" action="/generate" method="get">
-                        <div class = "settings__group">
+<div class="settings-panel" id="settings-panel">
+    <div class="settings-panel__content">
 
-                            <div class="settings__range">
-                                <div class = "settings__label">Password length</div>
-                                <div class="settings__container-range">
-                                    <input type="range" min="7" max="20" step="1" value="7" id="range-slider" name="passwordLength" oninput="updateRangeValue(this.value)">
-                                    <div class="settings__range-value" id="range-value">7</div>
-                                </div>
-                            </div>
-                                
-                            <div class="settings__separator"></div>
+        <div class="settings-panel__header">
+            <span data-key="settings-span"> Settings</span>
+            <button class="settings-panel__close-btn" onclick="toggleSettings()">←</button>
+        </div>
 
-                            <div class="settings__input-keyword">
-                                <div class = "settings__label">Select a keyword</div>
-                                <div class="settings__container-input-text">
-                                    <input class = "settings__input-text" type="text" name="keyword" placeholder="Keyword">
-                                </div>
-                            </div>
+        <div class="output__divider"></div>
 
-                            <div class="settings__separator"></div>
+        <div class="settings-panel__section-lng">
+            <span data-key="language-span">Language</span>
+            <button class ="lng-button" onclick="changeLanguage('en')">English</button>
+            <button class ="lng-button" onclick="changeLanguage('ru')">Русский</button>
+            <button class ="lng-button" onclick="changeLanguage('ch')">中文</button>
+        </div>
 
-                            <div class="settings__container-checkbox">
-                                <label class="settings__label-left">
-                                    <input class="settings__input-checkbox" id = "checkbox-id-1" name="smallLetters" type="checkbox" checked>
-                                    <label for="checkbox-id-1">Small letters</label>
-                                </label>
-                                <label class="settings__label-right">
-                                    <input class="settings__input-checkbox" id = "checkbox-id-2" name="symbols" type="checkbox" checked>
-                                    <label for="checkbox-id-2">Symbols</label>
-                                </label>
-                                <label class="settings__label-left">
-                                    <input class="settings__input-checkbox" id = "checkbox-id-3" name="bigLetters" type="checkbox" checked>
-                                    <label for="checkbox-id-3">Big letters</label>
-                                </label>
-                                <label class="settings__label-right">
-                                    <input class="settings__input-checkbox" id = "checkbox-id-4" name="numbers" type="checkbox" checked>
-                                    <label for="checkbox-id-4">Numbers</label>
-                                </label>
-                            </div>
-                            
-                            <div class="settings__separator"></div>
+        <div class="output__divider"></div>
+        
+        <div class="settings-panel__section-theme">
+            <span data-key="theme-span">Theme</span>
+            <button class="theme-button" data-key="light" onclick="changeTheme('light')">Light</button>
+            <button class="theme-button" data-key="dark" onclick="changeTheme('dark')">Dark</button>
+        </div>
 
-                            <div class= "settings__button">
-                                <button type = "submit" class = "settings__button-generate">GENERATE</button>
-                            </div>
+    </div>
+</div>
 
-                        </div>
-                    </form>
-=======
+
 <div class = "password-generator">
     <div class = "password-generator__outer">
         <div class = "password-generator__inner">
@@ -86,7 +58,7 @@
                     <div class = "settings__group">
 
                         <div class="settings__range">
-                            <div class = "settings__label">Password length</div>
+                            <div class = "settings__label" data-key="pass-length">Password length</div>
                             <div class="settings__container-range">
                                 <input type="range" min="7" max="20" step="1" value="7" id="range-slider" name="passwordLength" oninput="updateRangeValue(this.value)">
                                 <div class="settings__range-value" id="range-value">7</div>
@@ -96,9 +68,11 @@
                         <div class="settings__separator"></div>
 
                         <div class="settings__input-keyword">
-                            <div class = "settings__label">Select a keyword</div>
+                            <div class = "settings__label" data-key="select-keyword">Select a keyword</div>
                             <div class="settings__container-input-text">
-                                <input class = "settings__input-text" type="text" name="keyword" placeholder="Keyword">
+                                <input class = "settings__input-text" type="text" name="keyword" 
+                                        placeholder="Keyword" data-placeholder="keyword_placeholder" 
+                                        oninput= "">
                             </div>
                         </div>
 
@@ -107,55 +81,81 @@
                         <div class="settings__container-checkbox">
                             <label class="settings__label-left">
                                 <input class="settings__input-checkbox" id = "checkbox-id-1" name="smallLetters" type="checkbox" checked>
-                                <label for="checkbox-id-1">Small letters</label>
+                                <label for="checkbox-id-1" data-key="small-letters">Small letters</label>
                             </label>
                             <label class="settings__label-right">
                                 <input class="settings__input-checkbox" id = "checkbox-id-2" name="symbols" type="checkbox" checked>
-                                <label for="checkbox-id-2">Symbols</label>
+                                <label for="checkbox-id-2" data-key="symbols">Symbols</label>
                             </label>
                             <label class="settings__label-left">
                                 <input class="settings__input-checkbox" id = "checkbox-id-3" name="bigLetters" type="checkbox" checked>
-                                <label for="checkbox-id-3">Big letters</label>
+                                <label for="checkbox-id-3" data-key="big-letters">Big letters</label>
                             </label>
                             <label class="settings__label-right">
                                 <input class="settings__input-checkbox" id = "checkbox-id-4" name="numbers" type="checkbox" checked>
-                                <label for="checkbox-id-4">Numbers</label>
+                                <label for="checkbox-id-4" data-key="numbers">Numbers</label>
                             </label>
                         </div>
 
                         <div class="settings__separator"></div>
 
                         <div class= "settings__button">
-                            <button type = "submit" class = "settings__button-generate">GENERATE</button>
+                            <button type = "submit" class = "settings__button-generate" data-key="generate-btn">Generate</button>
                         </div>
 
                     </div>
                 </form>
->>>>>>> backend
 
 
-                <div class = "output">
-                    <div class = "output__mode">
-                        <button class = "output__arrow" onclick="toggleMode()"> &lt; </button>
-                        <span class = "output__title" id = "mode-title"> HELP </span>
-                        <button class = "output__arrow" onclick="toggleMode()"> &gt; </button>
+                <div class="output">
+                    <div class="output__mode">
+                        <button class="output__arrow" onclick="toggleMode()"> &lt; </button>
+                        <span class="output__title" id="mode-title" data-key="rules">Rules</span>
+                        <button class="output__arrow" onclick="toggleMode()"> &gt; </button>
                     </div>
-                    <div class = "output__divider"></div>
-                    <div class = "output__rules" id = "rules-content">
-                        <p>Rules for creating a good password:</p>
+                    <div class="output__divider"></div>
+                
+                    <div class="output__rules" id="rules-content">
+                        <p data-key="rules-info">Rules for creating a good password:</p>
                         <ol>
-                            <li>The password must consist of characters, numbers, and letters.</li>
-                            <li>The more characters in the password, the better.</li>
-                            <li>The password should not contain the name and date of birth.</li>
-                            <li>Do not use your personal information (full name, date of birth) as a keyword.</li>
+                            <li data-key="rule-1">The password must consist of characters, numbers, and letters.</li>
+                            <li data-key="rule-2">The more characters in the password, the better.</li>
+                            <li data-key="rule-3">The password should not contain the name and date of birth.</li>
+                            <li data-key="rule-4">Do not use your personal information (full name, date of birth) as a keyword.</li>
                         </ol>
                     </div>
-                </div>
+                
+                    <div class="output__password hidden" id="password-content">
+                        <p class="output__description" data-key="you-gen-pass">Your generated password:</p>
+                        <div class="output__box">
+
+                            <div class="output__container-output-word" id="output-word">
+                                ExamplePassword1234!
+                            </div>
+
+                            <div class="output__container-copy-button">
+                                <button type="submit" class="output__copy-button" id="copy-button" data-key="copy" onclick="copyFunc()">COPY</button>
+                            </div>
+
+                            <div class="output__container-copy-message">
+                                <div class="output__copy-message" id="copy-message" data-key="copy-message">Copied!</div>
+                            </div>
+                            
+                            <div class="output__divider"></div>
+
+                            <div class="output__container-hacking-time">
+                                <p class="output__description" data-key="hacking-time">The time it takes to crack this password</p>
+                                <span class="output__hacking-time">1487 days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
             </div>
         </div>
     </div>
 </div>
 
+<script src="static/translations.js"></script>
 <script src="static/scripts.js"></script>
 
 </body>

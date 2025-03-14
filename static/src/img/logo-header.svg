@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="176.78088mm"
+   height="33.67717mm"
+   viewBox="0 0 176.78088 33.67717"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <rect
+       x="44.074394"
+       y="370.50037"
+       width="725.85016"
+       height="360.8591"
+       id="rect1" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       id="filter1"
+       x="-0.0020104365"
+       y="-0.010736792"
+       width="1.0040209"
+       height="1.0214736">
+      <feGaussianBlur
+         stdDeviation="0.55745425"
+         id="feGaussianBlur1" />
+    </filter>
+  </defs>
+  <text
+     xml:space="preserve"
+     transform="matrix(0.26458333,0,0,0.26458333,-14.40612,-110.56041)"
+     id="text1"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:'Pixelify Sans';-inkscape-font-specification:'Pixelify Sans Bold';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1);mix-blend-mode:normal;fill:none;stroke:#000000;stroke-width:0.377953;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1;filter:url(#filter1)"><tspan
+       x="44.074219"
+       y="541.7"
+       id="tspan3"><tspan
+         style="fill:#ffffff;stroke:none"
+         id="tspan2">RANPAS</tspan></tspan></text>
+</svg>

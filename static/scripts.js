@@ -1,3 +1,7 @@
+let currentLang = localStorage.getItem("lang") || "en";
+
+
+
 function updateRangeValue(value) {
 
     const rangeInput = document.getElementById("range-slider");
@@ -11,6 +15,8 @@ function updateRangeValue(value) {
 
     rangeInput.style.background = `linear-gradient(to right, var(--yellow-bios) 
                                 ${percentage}%, var(--white-bios) ${percentage}%)`;
+
+    rangeInput.value = value;
 }
 
 
@@ -18,79 +24,108 @@ function updateRangeValue(value) {
 function toggleMode() {
     let modeTitle = document.getElementById("mode-title");
     let rulesContent = document.getElementById("rules-content");
+    let passwordContent = document.getElementById("password-content");
 
-<<<<<<< HEAD
-    let currentMode = modeTitle.textContent.trim(); 
-=======
-    let currentMode = modeTitle.textContent.trim();
->>>>>>> backend
-
-    if (currentMode === "HELP") {
-        modeTitle.textContent = "OUTPUT";
-        rulesContent.innerHTML = `
-            <p class="output__description">Your generated password:</p>
-            <div class="output__box">
-                <div class="output__container-output-word" id="output-word">
-                    ExamplePassword1234!
-                </div>
-                <div class="output__container-copy-button">
-                    <button type="submit" class="output__copy-button" id="copy-button" onclick="copyFunc()">COPY</button>
-                </div>
-            </div>`;
+    if (modeTitle.getAttribute("data-key") === "rules") {
+        modeTitle.setAttribute("data-key", "output");
+        rulesContent.classList.add("hidden");
+        passwordContent.classList.remove("hidden");
     } else {
-        modeTitle.textContent = "HELP";
-        rulesContent.innerHTML = `
-            <p>Rules for creating a good password:</p>
-            <ol>
-                <li>The password must consist of characters, numbers, and letters.</li>
-                <li>The more characters in the password, the better.</li>
-                <li>The password should not contain the name and date of birth.</li>
-                <li>Do not use your personal information (full name, date of birth) as a keyword.</li>
-            </ol>`;
+        modeTitle.setAttribute("data-key", "rules");
+        passwordContent.classList.add("hidden");
+        rulesContent.classList.remove("hidden");
     }
+
+    changeLanguage(currentLang);
 }
 
+
+// function onInput(el){
+//     const length = el.value.length;
+
+//     if(length >= 7){
+//         updateRangeValue(length);
+//     }
+// }
 
 
 function copyFunc(){
     const outputWord = document.getElementById("output-word");
     const text = outputWord.textContent || outputWord.innerText;
-<<<<<<< HEAD
-
-    navigator.clipboard.writeText(text)
-    .then(() =>{
-    })
-    .catch(err => {
-        alert("Ошибка копирования!");
-    });
-}
-
-
-
-// document.addEventListener("DOMContentLoaded", function () {
-    
-//     document.getElementById("password-form").addEventListener("submit", function (event) {
-//         event.preventDefault();
-
-//         toggleMode();
-        
-//         const formData = new FormData(this);
-//         const jsonData = Object.fromEntries(formData.entries());
-
-//         console.log("Отправляемые данные:", jsonData);
-
-//     });
-// });
-=======
+    const copyMessage = document.getElementById("copy-message");
 
     navigator.clipboard.writeText(text)
         .then(() =>{
+            copyMessage.classList.add("active")
+
+            setTimeout(() =>{
+                copyMessage.classList.remove("active");
+            }, 2000);
         })
         .catch(err => {
             alert("Ошибка копирования!");
         });
 }
 
+
+
+function changeLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem("lang", lang);
+
+    document.querySelectorAll("[data-key]").forEach((el) => {
+        let key = el.getAttribute("data-key");
+        if (translations[key] && translations[key][lang]) {
+            el.textContent = translations[key][lang];
+        }
+    });
+
+    document.querySelectorAll("[data-placeholder]").forEach(input => {
+         key = input.getAttribute("data-placeholder");
+        if (translations[key] && translations[key][lang]) {
+            input.setAttribute("placeholder", translations[key][lang]);
+        }
+    });
+}
+
+
+
+function toggleSettings() {
+    document.getElementById("settings-panel").classList.toggle("active");
+}
+
+
+
+function changeTheme(theme){
+    if(theme === 'light'){
+        document.body.classList.remove("dark-theme");
+        document.body.classList.add("light-theme");
+        localStorage.setItem("theme", "light");
+    } else {
+        document.body.classList.remove("light-theme");
+        document.body.classList.add("dark-theme");
+        localStorage.setItem("theme", "dark");
+    }
+}
+
+
+
+
+document.addEventListener("click", function (event) {
+    const panel = document.getElementById("settings-panel");
+    const button = document.querySelector(".header__settings-btn");
+
+    if (!panel.contains(event.target) && !button.contains(event.target)) {
+        panel.classList.remove("active");
+    }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    changeLanguage(currentLang);
+    const savedTheme = localStorage.getItem("theme") || "light";
+    changeTheme(savedTheme);
+});
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -123,4 +158,3 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 });
->>>>>>> backend
