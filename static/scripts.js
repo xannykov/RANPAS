@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("password-form").addEventListener("submit", function (event) {
-        event.preventDefault(); // Отключаем стандартную отправку формы
+        event.preventDefault();
 
         const formData = new FormData(this);
         const queryParams = new URLSearchParams(formData).toString();
@@ -140,18 +140,20 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 console.log("Полученный пароль:", data.password);
 
-                // Обновляем UI
-                document.getElementById("mode-title").textContent = "OUTPUT";
-                document.getElementById("rules-content").innerHTML = `
-                    <p class="output__description">Your generated password:</p>
-                    <div class="output__box">
-                        <div class="output__container-output-word" id="output-word">
-                            ${data.password}
-                        </div>
-                        <div class="output__container-copy-button">
-                            <button class="output__copy-button" id="copy-button" onclick="copyFunc()">COPY</button>
-                        </div>
-                    </div>`;
+                const outputWord = document.getElementById("output-word");
+                const rulesContent = document.getElementById("rules-content");
+                const passwordContent = document.getElementById("password-content");
+
+                if (outputWord) {
+                    outputWord.textContent = data.password;
+                }
+
+                rulesContent.classList.add("hidden");
+                passwordContent.classList.remove("hidden");
+                
+                const modeTitle = document.getElementById("mode-title");
+                modeTitle.setAttribute("data-key", "output");
+                modeTitle.textContent = "OUTPUT";
             })
             .catch(error => {
                 console.error("Ошибка:", error);

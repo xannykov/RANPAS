@@ -1,5 +1,10 @@
 const translations = {
 
+    "title-name" : {
+        "ru": "RANPAS - Генератор паролей",
+        "en": "RANPAS - Password Generator",
+        "ch": "RANPAS - 密码生成器",
+    },
     "settings-btn" : {
         "ru": "Настройки",
         "en": "Settings",
