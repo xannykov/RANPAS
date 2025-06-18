@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"math/big"
 	"net/http"
 	"strconv"
 )
