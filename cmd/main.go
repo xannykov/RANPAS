@@ -1,8 +1,6 @@
 package main
 
 import (
-	"crypto/rand"
-	"encoding/json"
 	"log"
 	"math/big"
 	"net/http"
