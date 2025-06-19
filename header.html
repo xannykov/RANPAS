@@ -1,0 +1,41 @@
+<header class="header">
+    <div class="header__btn-container">
+        <button class="header__settings-btn" data-key="settings-btn" onclick="toggleSettings()">Settings</button>
+        <button class="header__info-page-btn" data-key="info-page-btn" onclick="toggleInfoPage()">Info</button>
+    </div>
+    
+    <div class="header__container">
+        <div class = "header__logo">
+            <a href="index.html"><img src="static/src/img/logo-header.png" alt="RANPAS" class ="header__logo"></a>
+        </div>
+    </div>
+</header>
+
+
+<div class="settings-panel" id="settings-panel">
+    <div class="settings-panel__content">
+
+        <div class="settings-panel__header">
+            <span data-key="settings-span"> Settings</span>
+            <button class="settings-panel__close-btn" onclick="toggleSettings()">←</button>
+        </div>
+
+        <div class="output__divider"></div>
+
+        <div class="settings-panel__section-lng">
+            <span data-key="language-span">Language</span>
+            <button class ="lng-button" onclick="changeLanguage('en')">English</button>
+            <button class ="lng-button" onclick="changeLanguage('ru')">Русский</button>
+            <button class ="lng-button" onclick="changeLanguage('ch')">中文</button>
+        </div>
+
+        <div class="output__divider"></div>
+        
+        <div class="settings-panel__section-theme">
+            <span data-key="theme-span">Theme</span>
+            <button class="theme-button" data-key="light" onclick="changeTheme('light')">Light</button>
+            <button class="theme-button" data-key="dark" onclick="changeTheme('dark')">Dark</button>
+        </div>
+
+    </div>
+</div>

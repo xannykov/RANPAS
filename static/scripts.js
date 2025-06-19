@@ -110,6 +110,12 @@ function changeTheme(theme){
 
 
 
+function toggleInfoPage(){
+    window.location.href = "info.html";
+}
+
+
+
 
 document.addEventListener("click", function (event) {
     const panel = document.getElementById("settings-panel");
@@ -121,11 +127,20 @@ document.addEventListener("click", function (event) {
 });
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     changeLanguage(currentLang);
     const savedTheme = localStorage.getItem("theme") || "light";
     changeTheme(savedTheme);
-});
+
+    fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("header-container").innerHTML = data;
+        const savedLang = localStorage.getItem('lang') || 'en';
+        changeLanguage(savedLang);
+    })
+    .catch(error => console.log("Ошибка загрузки header.html", error));
+})
 
 
 document.addEventListener("DOMContentLoaded", function () {

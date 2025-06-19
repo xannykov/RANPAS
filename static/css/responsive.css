@@ -15,7 +15,7 @@
 
 
 @media (max-width: 1024px) {
-    header{
+    .header__container{
         justify-content: right;
         margin-right: 15px;
     }
@@ -66,6 +66,14 @@
         width: 180px;
     }
 
+    .header__btn-container{
+        gap: 0;
+    }
+
+    .header__settings-btn,
+    .header__info-page-btn{
+        padding: 5px 10px;
+    }
     .password-generator__content{
         display: flex;
         flex-direction: column;
