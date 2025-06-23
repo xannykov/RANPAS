@@ -8,47 +8,9 @@
     <title data-key="title-name">RANPAS - Password Generator</title>
 </head>
 <body>
+    <div id="header-container"></div>
 
-<header class="header">
-    <button class="header__settings-btn" data-key="settings-btn" onclick="toggleSettings()">Settings</button>
-    <div class="header__container">
-        <div class = "header__logo">
-            <img src="static/src/img/logo-header.png" alt="RANPAS" class ="header__logo">
-        </div>
-    </div>
-</header>
-
-
-<div class="settings-panel" id="settings-panel">
-    <div class="settings-panel__content">
-
-        <div class="settings-panel__header">
-            <span data-key="settings-span"> Settings</span>
-            <button class="settings-panel__close-btn" onclick="toggleSettings()">←</button>
-        </div>
-
-        <div class="output__divider"></div>
-
-        <div class="settings-panel__section-lng">
-            <span data-key="language-span">Language</span>
-            <button class ="lng-button" onclick="changeLanguage('en')">English</button>
-            <button class ="lng-button" onclick="changeLanguage('ru')">Русский</button>
-            <button class ="lng-button" onclick="changeLanguage('ch')">中文</button>
-        </div>
-
-        <div class="output__divider"></div>
-        
-        <div class="settings-panel__section-theme">
-            <span data-key="theme-span">Theme</span>
-            <button class="theme-button" data-key="light" onclick="changeTheme('light')">Light</button>
-            <button class="theme-button" data-key="dark" onclick="changeTheme('dark')">Dark</button>
-        </div>
-
-    </div>
-</div>
-
-
-<div class = "password-generator">
+    <div class = "password-generator">
     <div class = "password-generator__outer">
         <div class = "password-generator__inner">
             <div class = "password-generator__content">
@@ -155,8 +117,8 @@
     </div>
 </div>
 
-<script src="static/translations.js"></script>
 <script src="static/scripts.js"></script>
+<script src="static/translations.js"></script>
 
 </body>
 </html>

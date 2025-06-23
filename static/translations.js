@@ -10,6 +10,11 @@ const translations = {
         "en": "Settings",
         "ch": "设置",
     },
+    "info-page-btn" : {
+        "ru": "О проекте",
+        "en": "Info",
+        "ch": "关于项目",
+    },
     "settings-span" : {
         "ru": "Настройки",
         "en": "Settings",
@@ -135,5 +140,14 @@ const translations = {
         "ru": "Время, необходимое для взлома этого пароля",
         "en": "The time it takes to crack this password",
         "ch": "破解此密码所需的时间",
-    }
+    },
+
+
+
+
+    "developers" : {
+        "ru": "Разработчики",
+        "en": "Developers",
+        "ch": "开发人员",
+    },
 };

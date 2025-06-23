@@ -1,7 +1,8 @@
 /*========== SETTINGS BUTTON ==========*/
 
+.header__info-page-btn,
 .header__settings-btn {
-    position: absolute;
+    position: relative;
     left: 0;
     padding: 10px 15px;
     font-size: 1.8rem;
@@ -11,6 +12,7 @@
     cursor: pointer;
 }
 
+.header__info-page-btn:hover,
 .header__settings-btn:hover{
     color: var(--yellow-bios);
     transform: scale(1.1);

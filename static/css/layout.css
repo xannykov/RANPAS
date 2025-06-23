@@ -3,13 +3,31 @@
 header{
     height: 8vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    position: relative;
+}
+
+.header__btn-container {
+    position: absolute;
+    display: flex;
+    gap: 15px;
+}
+
+.header__container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .header__logo{
     width: 240px;
 }
+
+.header__logo:hover{
+    transform: scale(1.02);
+}
+
 
 
 
