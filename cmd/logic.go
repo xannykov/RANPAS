@@ -1,10 +1,18 @@
 package main
 
 import (
+	"bufio"
 	"crypto/rand"
+	"encoding/json"
+	"fmt"
+	"io"
 	"log"
 	"math"
 	"math/big"
+	"net/http"
+	"net/url"
+	"os"
+	"strings"
 )
 
 const (
@@ -114,14 +122,58 @@ func CrackPassword(config *PasswordConfig) float64 {
 	return time
 }
 
-func GetRandomWords(words []string) string {
-	if len(words) == 0 {
+func isForbidden(keyword string) bool {
+	forbidden := make([]string, 0, 141)
+	fileName := "forbidden_words.txt"
+
+	file, err := os.Open(fileName)
+	if err != nil {
+		log.Fatal(err)
+		return true
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	for scanner.Scan() {
+		forbidden = append(forbidden, scanner.Text())
+	}
+	if err2 := scanner.Err(); err2 != nil {
+		log.Fatal(err2)
+		return true
+	}
+
+	keyword = strings.ToLower(keyword)
+
+	for _, forb := range forbidden {
+		if keyword == forb {
+			return true
+		}
+	}
+	return false
+}
+
+func fetchRandomWord(w http.ResponseWriter, keyword string) string {
+	encodedKeyword := url.QueryEscape(keyword)
+
+	urlAddress := fmt.Sprintf("http://localhost:8000/associations?word=%s", encodedKeyword)
+
+	respFromFastAPI, err := http.Get(urlAddress)
+	if err != nil {
+		http.Error(w, "StatusInternalServerError", http.StatusInternalServerError)
+	}
+	defer respFromFastAPI.Body.Close()
+
+	body, _ := io.ReadAll(respFromFastAPI.Body)
+
+	log.Println("Response from FastAPI:", string(body))
+
+	var words []string
+	err = json.Unmarshal(body, &words)
+	if err != nil {
+		http.Error(w, "Failed to parse JSON", http.StatusInternalServerError)
+		log.Println("Error parsing JSON:", err)
 		return ""
 	}
-	n, err := rand.Int(rand.Reader, big.NewInt(int64(len(words))))
-	if err != nil {
-		log.Println("Error generating random index:", err)
-		return words[0] // В случае ошибки возвращаем первый элемент
-	}
-	return words[n.Int64()]
+	return words[0]
 }

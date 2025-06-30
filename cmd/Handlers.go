@@ -2,22 +2,41 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
-	"io"
 	"log"
 	"net/http"
-	"net/url"
+	"os"
 	"strconv"
+	"time"
 )
 
 func MainHandle(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "index.html")
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	files := []string{"header.html", "index.html"}
+
+	for _, fname := range files {
+		content, err := os.ReadFile(fname)
+		if err != nil {
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+			return
+		}
+		w.Write(content)
+	}
 }
 
-func StaticHandler(w http.ResponseWriter, r *http.Request) {
-	r.URL.Path = r.URL.Path[7:]
-	http.FileServer(http.Dir("static")).ServeHTTP(w, r)
-	//w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
+func InfoHandle(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	files := []string{"header.html", "info.html"}
+
+	for _, fname := range files {
+		content, err := os.ReadFile(fname)
+		if err != nil {
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+			return
+		}
+		w.Write(content)
+	}
 }
 
 func GenerateHandler(w http.ResponseWriter, r *http.Request) {
@@ -34,6 +53,15 @@ func GenerateHandler(w http.ResponseWriter, r *http.Request) {
 
 	keyword := r.FormValue("keyword")
 	log.Println("Entered keyword: ", keyword)
+
+	if isForbidden(keyword) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]bool{
+			"output-word": true,
+		})
+		return
+	}
 	lenghtAllPassword, _ := strconv.Atoi(r.FormValue("passwordLength"))
 
 	if lenghtAllPassword < MinPasswordLength {
@@ -47,36 +75,26 @@ func GenerateHandler(w http.ResponseWriter, r *http.Request) {
 		lenghtAllPassword, r.FormValue("lowLetters") == "on",
 		r.FormValue("bigLetters") == "on",
 		r.FormValue("symbols") == "on",
-		r.FormValue("numbers") == "on", Hour}
+		r.FormValue("numbers") == "on", 0}
 
-	encodedKeyword := url.QueryEscape(keyword)
+	t := time.Now()
 
-	urlAddress := fmt.Sprintf("http://localhost:8000/associations?word=%s", encodedKeyword)
+	wordChan := make(chan string)
+	go func() {
+		wordChan <- fetchRandomWord(w, keyword)
+	}()
 
-	respFromFastAPI, err := http.Get(urlAddress)
-	if err != nil {
-		http.Error(w, "StatusInternalServerError", http.StatusInternalServerError)
-	}
-	defer respFromFastAPI.Body.Close()
+	crackChan := make(chan float64)
+	go func() {
+		crackChan <- CrackPassword(&config)
+	}()
 
-	body, _ := io.ReadAll(respFromFastAPI.Body)
+	randomWordIsGenerated := <-wordChan
 
-	log.Println("Response from FastAPI:", string(body))
+	length := config.Length - len([]rune(randomWordIsGenerated))
 
-	words := make([]string, len(body))
-	err = json.Unmarshal(body, &words)
-	if err != nil {
-		http.Error(w, "Failed to parse JSON", http.StatusInternalServerError)
-		log.Println("Error parsing JSON:", err)
-		return
-	}
-	log.Println(words)
-
-	randomWord := GetRandomWords(words)
-	length := config.Length - len([]rune(randomWord))
-
-	password := randomWord + GeneratePassword(length, keyword, &config)
-	crackingTime := CrackPassword(&config)
+	password := randomWordIsGenerated + GeneratePassword(length, keyword, &config)
+	crackingTime := <-crackChan
 
 	response := map[string]interface{}{
 		"password":      password,
@@ -86,5 +104,7 @@ func GenerateHandler(w http.ResponseWriter, r *http.Request) {
 	//ХАХАХАХ чзх это ебать
 	log.Println("Response: ", response)
 	w.Header().Set("Content-Type", "application/json")
+	timer1 := time.Since(t)
+	log.Println("Evaluated time: ", timer1)
 	json.NewEncoder(w).Encode(response)
 }

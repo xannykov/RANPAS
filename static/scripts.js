@@ -111,7 +111,7 @@ function changeTheme(theme){
 
 
 function toggleInfoPage(){
-    window.location.href = "info.html";
+    window.location.href = "/info";
 }
 
 
